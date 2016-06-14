@@ -1,6 +1,6 @@
 {
     "chemical json": 0,
-    "name": "/home/sanjeed/GSOC/cclib/data/QChem/basicQChem4.2/water_ir_anharm",
+    "name": "water_ir_anharm",
     "vibrations": {
         "frequencies": [1860.1, 3939.13, 4272.66],
         "intensities": {

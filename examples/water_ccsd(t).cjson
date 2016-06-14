@@ -9,7 +9,7 @@
         }
     },
     "chemical json": 0,
-    "name": "/home/sanjeed/GSOC/cclib/data/QChem/basicQChem4.2/water_ccsd(t)",
+    "name": "water_ccsd(t)",
     "atoms": {
         "elements": {
             "atom count": 3,

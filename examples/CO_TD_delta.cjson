@@ -1,6 +1,6 @@
 {
     "chemical json": 0,
-    "name": "/home/sanjeed/GSOC/cclib/data/Gaussian/basicGaussian09/CO_TD_delta",
+    "name": "CO_TD_delta",
     "atoms": {
         "mass": [12.0, 15.9949146],
         "elements": {
