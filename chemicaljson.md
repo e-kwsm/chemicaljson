@@ -1,6 +1,6 @@
 # Introduction
 
-The JSON format is a general container, and the work done in Chemical JSON was primarily aimed at developing a standard on top of the [JSON][JSON] (and [BSON][BSON]) format for chemical data. It was developed primarily to serve the needs of the Avogadro 2 application, but also to facilitate efficient storage in MongoDB (in the form of BSON), and to exchange data using [JSON-RPC 2.0][JSONRPC] and [RESTful APIs][REST]. It has since been used in web applications, and with 3DMol.js.
+The JSON format is a general container, and the work done in Chemical JSON was primarily aimed at developing a standard on top of the [JSON][JSON] (and [BSON][BSON]) format for chemical data. It was developed primarily to serve the needs of the Avogadro 2 application, but also to facilitate efficient storage in MongoDB (in the form of BSON), and to exchange data using [JSON-RPC 2.0][JSONRPC] and [RESTful APIs][REST]. It has since been used in web applications, and with 3DMol.js. The early format was documented on the [Chemical JSON][CJSONWiki] wiki page.
 
 ## Purpose
 
@@ -110,6 +110,7 @@ The example below shows a typical example of the output of the Avogadro 2 progra
       }
     }
 
+[CJSONWiki]: http://wiki.openchemistry.org/Chemical_JSON "Chemical JSON"
 [JSON]: http://www.json.org/ "JSON"
 [BSON]: http://bsonspec.org/ "BSON"
 [JSONRPC]: http://www.jsonrpc.org/specification "JSON-RPC 2.0"
