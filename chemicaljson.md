@@ -34,6 +34,14 @@ The 'bonds object is at the root level, and if present is expected to contain a 
 
 They 'properties' object is at the top lelve, and if present contains key value pairs corresponding to molecule properties, such as the molecular mass, melting point, boiling point, charge, etc.
 
+## Molecular Orbitals
+
+The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electroncs occupy the orbital.
+
+## Vibrations
+
+The 'vibrations' object contains a 'frequencies' array with the frequency of each mode, an 'intensities' array with the intensity of each mode, a 'modes' array with a numeric identifier for the mode, and an 'eigenvectors' array that contains an array of eigenvectors for each vibration.
+
 ## Minimal File
 
 The exaample below shows the a minimal file. It has an atoms object with atomic numbers, and a coordinates block ("coords") that contains 3D coordinates.
