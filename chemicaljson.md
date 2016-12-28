@@ -30,6 +30,11 @@ Coordinates are expected to be in Angstrom units, and the atomic numbers are exp
 
 The 'bonds object is at the root level, and if present is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier.
 
+## Unit Cell
+
+The 'unit cell' object is at the root level, and if present specifies the unit cell. The keys 'a', 'b', 'c', 'alpha'
+, 'beta', and 'gamma' are expected to specify the unit cell. It a unit cell is present then the atoms are expected to have their coordinates supplied as fractional coordinates.
+
 ## Properties Object
 
 They 'properties' object is at the top lelve, and if present contains key value pairs corresponding to molecule properties, such as the molecular mass, melting point, boiling point, charge, etc.
