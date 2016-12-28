@@ -16,6 +16,24 @@ Its layout and organization view a molecule as a set of arrays that describe var
 
 The key "chemical json" is expected with a value of 0 to represent the first version of the format. The reader and writer in Avogadro 2 expects some minimal content, but most keys are optional. Several examples are present in the repository, but at its core all that a Chemical JSON file is expected to contain is a list of atoms with coordinates.
 
+## Top Level Keys
+
+The 'chemical json' key and 'atoms' object are considered required. Other top-level keys/objects are optional. Common top level keys include 'name' that specifies a name for the molecule, 'inchi' that contains the InChI of the molecule, 'inchikey' that contains the InChI key, and 'formula' that contains the space separated molecular formula.
+
+## Atoms Object
+
+The 'atoms' object is at the root level, and is minimally expected to have an 'elements' object with an array called 'number', and a 'coords' object with an array called '3d'. If a 'unit cell' object is present at the root level than the 'coords' object is expected to contain an array called '3d fractional' that contains the fractional coordinates rather than the 3D Cartesian coordinates.
+
+Coordinates are expected to be in Angstrom units, and the atomic numbers are expected to correspond to the proton number of the atom represented. The optional array 'selected' specifies which atoms are considered selected. An optional array in elements named 'symbols' may contain the symbols, e.g. 'C' for carbon, and an array named 'ids' contains unique string identifiers for each atom.
+
+## Bonds Object
+
+The 'bonds object is at the root level, and if present is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier.
+
+## Properties Object
+
+They 'properties' object is at the top lelve, and if present contains key value pairs corresponding to molecule properties, such as the molecular mass, melting point, boiling point, charge, etc.
+
 ## Minimal File
 
 The exaample below shows the a minimal file. It has an atoms object with atomic numbers, and a coordinates block ("coords") that contains 3D coordinates.
