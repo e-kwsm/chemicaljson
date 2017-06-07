@@ -4,7 +4,7 @@ The JSON format is a general container, and the work done in Chemical JSON was p
 
 ## Purpose
 
-The purppose here is to document the format, provide an [open specification][openspec], establish what is required or optional, and to provide a living spefication as we extend the format. There is other work in the NWChem JSON project to develop a format that can be used to replace traditional log files in NWChem, and very early ideas on how to integrate JSON-LD into these JSON formats in order to offer a semantically rich format. This will ideally reuse some of the previous work done in the [CML format][CML] for XML.
+The purppose here is to document the format, provide an [open specification][openspec], establish what is required or optional, and to provide a living spefication as we extend the format. There is other work in the [NWChem JSON][nwchemjson] project to develop a format that can be used to replace traditional log files in NWChem, and very early ideas on how to integrate JSON-LD into these JSON formats in order to offer a semantically rich format. This will ideally reuse some of the previous work done in the [CML format][CML] for XML.
 
 ## Motivation
 
@@ -122,3 +122,4 @@ The example below shows a typical example of the output of the Avogadro 2 progra
 [REST]: https://en.wikipedia.org/wiki/Representational_state_transfer "REST"
 [openspec]: https://en.wikipedia.org/wiki/Open_specifications "Open specifications"
 [CML]: http://www.xml-cml.org/ "Chemical Markup Language - CML"
+[nwchemjson]: https://github.com/wadejong/NWChem-Json
