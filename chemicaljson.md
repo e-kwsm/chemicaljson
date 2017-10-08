@@ -28,7 +28,7 @@ Coordinates are expected to be in Angstrom units, and the atomic numbers are exp
 
 ## Bonds Object
 
-The 'bonds object is at the root level, and if present is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier.
+The 'bonds object is at the root level, and if present is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier. Bonds should only be specified once. If atom 0 is bonded to atom 1 it is up to the program to account for the implicit bond from atom 1 to atom 0.
 
 ## Unit Cell
 
