@@ -41,7 +41,7 @@ They 'properties' object is at the top lelve, and if present contains key value 
 
 ## Molecular Orbitals
 
-The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electroncs occupy the orbital.
+The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electrons occupy the orbital.
 
 ## Vibrations
 
