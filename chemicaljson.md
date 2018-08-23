@@ -4,11 +4,11 @@ The JSON format is a general container, and the work done in Chemical JSON was p
 
 ## Purpose
 
-The purppose here is to document the format, provide an [open specification][openspec], establish what is required or optional, and to provide a living spefication as we extend the format. There is other work in the [NWChem JSON][nwchemjson] project to develop a format that can be used to replace traditional log files in NWChem, and very early ideas on how to integrate JSON-LD into these JSON formats in order to offer a semantically rich format. This will ideally reuse some of the previous work done in the [CML format][CML] for XML.
+The purpose here is to document the format, provide an [open specification][openspec], establish what is required or optional, and to provide a living specification as we extend the format. There is other work in the [NWChem JSON][nwchemjson] project to develop a format that can be used to replace traditional log files in NWChem, and very early ideas on how to integrate JSON-LD into these JSON formats in order to offer a semantically rich format. This will ideally reuse some of the previous work done in the [CML format][CML] for XML.
 
 ## Motivation
 
-The format was developed in a very pragmatic manner, and was primarily developed to serve the needs of the Open Chemistry projects. The format is intended to minimal, and easy to idenfity. It was also developed with the intent to allow extension, and the possibility of breaking changes.
+The format was developed in a very pragmatic manner, and was primarily developed to serve the needs of the Open Chemistry projects. The format is intended to minimal, and easy to identify. It was also developed with the intent to allow extension, and the possibility of breaking changes.
 
 # Basic Anatomy of a Chemical JSON file
 
@@ -37,11 +37,11 @@ The 'unit cell' object is at the root level, and if present specifies the unit c
 
 ## Properties Object
 
-They 'properties' object is at the top lelve, and if present contains key value pairs corresponding to molecule properties, such as the molecular mass, melting point, boiling point, charge, etc.
+They 'properties' object is at the top level, and if present contains key value pairs corresponding to molecule properties, such as the molecular mass, melting point, boiling point, charge, etc.
 
 ## Molecular Orbitals
 
-The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electroncs occupy the orbital.
+The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electrons occupy the orbital.
 
 ## Vibrations
 
@@ -49,7 +49,7 @@ The 'vibrations' object contains a 'frequencies' array with the frequency of eac
 
 ## Minimal File
 
-The exaample below shows the a minimal file. It has an atoms object with atomic numbers, and a coordinates block ("coords") that contains 3D coordinates.
+The example below shows the a minimal file. It has an atoms object with atomic numbers, and a coordinates block ("coords") that contains 3D coordinates.
 
     {
       "chemical json": 0,
@@ -74,7 +74,7 @@ The coordinate block could use fractional coordinates with a unit cell instead. 
 
 ## Extended Example
 
-The example below shows a typical example of the output of the Avogadro 2 program. In additional to the keys in the above file it contains bonds with connectivity, and order. It also contains a molecular name, and the InChI genreated for the molecule. The molecular formula is also present, and this example obviously has some duplication of data.
+The example below shows a typical example of the output of the Avogadro 2 program. In additional to the keys in the above file it contains bonds with connectivity, and order. It also contains a molecular name, and the InChI generated for the molecule. The molecular formula is also present, and this example obviously has some duplication of data.
 
     {
       "chemical json": 0,
