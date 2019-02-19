@@ -1,5 +1,5 @@
 {
-  "chemical json": 0,
+  "chemicalJson": 1,
   "name": "Ethane",
   "inchi": "1/C2H6/c1-2/h1-2H3",
   "formula": "C 2 H 6",
@@ -31,8 +31,8 @@
     "order": [ 1, 1, 1, 1, 1, 1, 1 ]
   },
   "properties": {
-    "molecular mass": 30.0690,
-    "melting point": -172,
-    "boiling point": -88
+    "molecularMass": 30.0690,
+    "meltingPoint": -172,
+    "boilingPoint": -88
   }
 }

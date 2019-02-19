@@ -14,25 +14,25 @@ The format was developed in a very pragmatic manner, and was primarily developed
 
 Its layout and organization view a molecule as a set of arrays that describe various properties, for example the atomic numbers of the atoms are stored in an array of length N (where N is the number of atoms), and the '3d' coordinates are stored in an array of length 3N. All atom specific properties are stored in arrays in the 'atoms' object, and connectivity is stored in the 'bonds' object.
 
-The key "chemical json" is expected with a value of 0 to represent the first version of the format. The reader and writer in Avogadro 2 expects some minimal content, but most keys are optional. Several examples are present in the repository, but at its core all that a Chemical JSON file is expected to contain is a list of atoms with coordinates.
+The key 'chemicalJson' is expected with a value of 1 to represent the second version of the format (the first version used the key of 'chemical json' and a value of 0). The major revision from version 0 to 1 was a switch from the use of spaces to camel case. The reader and writer in Avogadro 2 expects some minimal content, but most keys are optional. Several examples are present in the repository, but at its core all that a Chemical JSON file is expected to contain is a list of atoms with coordinates.
 
 ## Top Level Keys
 
-The 'chemical json' key and 'atoms' object are considered required. Other top-level keys/objects are optional. Common top level keys include 'name' that specifies a name for the molecule, 'inchi' that contains the InChI of the molecule, 'inchikey' that contains the InChI key, and 'formula' that contains the space separated molecular formula.
+The 'chemicalJson' key and 'atoms' object are considered required. Other top-level keys/objects are optional. Common top level keys include 'name' that specifies a name for the molecule, 'inchi' that contains the InChI of the molecule, 'inchikey' that contains the InChI key, and 'formula' that contains the space separated molecular formula.
 
 ## Atoms Object
 
-The 'atoms' object is at the root level, and is minimally expected to have an 'elements' object with an array called 'number', and a 'coords' object with an array called '3d'. If a 'unit cell' object is present at the root level than the 'coords' object is expected to contain an array called '3d fractional' that contains the fractional coordinates rather than the 3D Cartesian coordinates.
+The 'atoms' object is at the root level, and is minimally expected to have an 'elements' object with an array called 'number', and a 'coords' object with an array called '3d'. If a 'unitCell' object is present at the root level than the 'coords' object is expected to contain an array called '3dFractional' that contains the fractional coordinates rather than the 3D Cartesian coordinates.
 
 Coordinates are expected to be in Angstrom units, and the atomic numbers are expected to correspond to the proton number of the atom represented. The optional array 'selected' specifies which atoms are considered selected. An optional array in elements named 'symbols' may contain the symbols, e.g. 'C' for carbon, and an array named 'ids' contains unique string identifiers for each atom.
 
 ## Bonds Object
 
-The 'bonds object is at the root level, and if present is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier. Bonds should only be specified once. If atom 0 is bonded to atom 1 it is up to the program to account for the implicit bond from atom 1 to atom 0.
+The 'bonds' object is at the root level, and if present it is expected to contain a 'connections' object with an 'index' array of length 2N specifying the index of the start and end atom of each bond, and an 'order' array of length N that specifies the order of the bond. The connections object may optionally contain an 'ids' array that specifies the start and end unique text identifier. Bonds should only be specified once. If atom 0 is bonded to atom 1 it is up to the program to account for the implicit bond from atom 1 to atom 0.
 
 ## Unit Cell
 
-The 'unit cell' object is at the root level, and if present specifies the unit cell. The keys 'a', 'b', 'c', 'alpha'
+The 'unitCell' object is at the root level, and if present specifies the unit cell. The keys 'a', 'b', 'c', 'alpha'
 , 'beta', and 'gamma' are expected to specify the unit cell. It a unit cell is present then the atoms are expected to have their coordinates supplied as fractional coordinates.
 
 ## Properties Object
@@ -41,7 +41,7 @@ They 'properties' object is at the top level, and if present contains key value 
 
 ## Molecular Orbitals
 
-The 'molecularOrbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electrons occupy the orbital.
+The 'orbitals' object contains some electronic structure for the molecule if present. The 'energies' array has an energy for each orbital, and the 'occupations' array specifies how many electrons occupy the orbital, and 'moCoefficients' specifies the coefficients for the molecular orbital.
 
 ## Vibrations
 
@@ -52,7 +52,7 @@ The 'vibrations' object contains a 'frequencies' array with the frequency of eac
 The example below shows the a minimal file. It has an atoms object with atomic numbers, and a coordinates block ("coords") that contains 3D coordinates.
 
     {
-      "chemical json": 0,
+      "chemicalJson": 1,
       "atoms": {
         "elements": {
           "number": [  1,   6,   1,   1,   6,   1,   1,   1 ]
@@ -77,7 +77,7 @@ The coordinate block could use fractional coordinates with a unit cell instead. 
 The example below shows a typical example of the output of the Avogadro 2 program. In additional to the keys in the above file it contains bonds with connectivity, and order. It also contains a molecular name, and the InChI generated for the molecule. The molecular formula is also present, and this example obviously has some duplication of data.
 
     {
-      "chemical json": 0,
+      "chemicalJson": 0,
       "name": "Ethane",
       "inchi": "1/C2H6/c1-2/h1-2H3",
       "formula": "C 2 H 6",
@@ -109,9 +109,9 @@ The example below shows a typical example of the output of the Avogadro 2 progra
         "order": [ 1, 1, 1, 1, 1, 1, 1 ]
       },
       "properties": {
-        "molecular mass": 30.0690,
-        "melting point": -172,
-        "boiling point": -88
+        "molecularMass": 30.0690,
+        "meltingPoint": -172,
+        "boilingPoint": -88
       }
     }
 
