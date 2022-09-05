@@ -74,9 +74,9 @@ class Orbitals(BaseModel):
 
     electronCount: int = Field(..., description="Number of electrons in the species")
     energies: Optional[List[float]] = Field(None, description="List of energies for the molecular orbitals (in eV)")
-    moCoefficients: Optional[List[float]] = Field(None, description="List of coefficients for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).")
-    alphaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients for alpha open-shell orbitals, (requires BasisSet to be present).")
-    betaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients for beta open-shell orbitals, (requires BasisSet to be present).")
+    moCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).")
+    alphaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).")
+    betaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for beta open-shell orbitals, (requires BasisSet to be present).")
     occupations: Optional[List[int]] = Field(None, description="List of occupations for the molecular orbitals")
     symmetries: Optional[List[List[str]]] = Field(None, description="Symmetry of the orbital (e.g., a1, eg, t1g, etc.)")
 
@@ -162,7 +162,7 @@ class UnitCell(BaseModel):
     beta: float = Field(..., description="Unit cell beta angle (in degrees).")
     gamma: float = Field(..., description="Unit cell gamma angle (in degrees).")
     cellVectors: Optional[List[float]] = Field(
-        min_items=9, max_items=9, default_factory=0.0, description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
+        min_items=9, max_items=9, default_factory=lambda: [0.0 for _ in range(9)], description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
     )
 
 
