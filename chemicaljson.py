@@ -225,6 +225,10 @@ class Layer(BaseModel):
 class CJSONModel(BaseModel):
     """Full Chemical JSON model.
 
+    A Chemical JSON (CJSON) model is intended to represent one molecular or periodic system.
+    Catenating multiple systems will result in invalid JSON - store separate systems as
+    separate files / JSON entries.
+
     Attributes:
         vibrations: Vibrations object. Optional.
         unitCell: UnitCell object. Optional.

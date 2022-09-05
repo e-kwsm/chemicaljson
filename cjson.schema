@@ -1,6 +1,6 @@
 {
   "title": "CJSONModel",
-  "description": "Full Chemical JSON model.\n\nAttributes:\n    vibrations: Vibrations object. Optional.\n    unitCell: UnitCell object. Optional.\n    layer: Layer object. Optional (used by the GUI for rendering / settings)\n    basisSet: BasisSet object. Optional.\n    orbitals: Orbitals object. Optional. Requires BasisSet to be present.",
+  "description": "Full Chemical JSON model.\n\nA Chemical JSON (CJSON) model is intended to represent one molecular or periodic system.\nCatenating multiple systems will result in invalid JSON - store separate systems as\nseparate files / JSON entries.\n\nAttributes:\n    vibrations: Vibrations object. Optional.\n    unitCell: UnitCell object. Optional.\n    layer: Layer object. Optional (used by the GUI for rendering / settings)\n    basisSet: BasisSet object. Optional.\n    orbitals: Orbitals object. Optional. Requires BasisSet to be present.",
   "type": "object",
   "properties": {
     "chemicalJson": {
