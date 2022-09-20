@@ -130,9 +130,9 @@ class InputParameters(BaseModel):
         keywords_line: A list of relevant keywords used in the calculation.
         memory: The amount of memory used for the calculation.
         processors: The number of processors used for the calculation.
+        run_date: Date on which the calculation was performed
         task: "Energy" or "Optimize" or "Frequencies" or "Transition State" or "Custom".
         theory: Method used for the calculation (e.g. "DFT" or "HF" or "MP2").
-
     """
 
     basis: Optional[str] = None
@@ -142,6 +142,7 @@ class InputParameters(BaseModel):
     keywords_line: Optional[str] = None
     memory: Optional[str] = None
     processors: Optional[str] = None
+    run_date: Optional[str] = None
     task: Optional[str] = None
     theory: Optional[str] = None
 
