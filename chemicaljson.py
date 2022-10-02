@@ -119,6 +119,14 @@ class Properties(BaseModel):
     totalEnergy: Optional[float] = Field(None, description="Optional total energy of the system in eV")
 
 
+class Metadata(BaseModel):
+    """Metadata for the calculation. (Optional)
+
+    Attributes:
+        runDate: date calculation was done 
+    """
+    basis: Optional[str] = None
+
 class InputParameters(BaseModel):
     """Input parameters for the calculation. (Optional)
 
@@ -126,11 +134,10 @@ class InputParameters(BaseModel):
         basis: Basis set used for the calculation (e.g. "6-31G(d)" or "Custom").
         dispersion: Dispersion correction used for the calculation (e.g. "D3" or "D3BJ")
         functional: Functional used for the calculation if DFT (e.g. "B3LYP" or "Custom").
-        grid: Keyword describing the DFT grid used if DFT.
-        keywords_line: A list of relevant keywords used in the calculation.
-        memory: The amount of memory used for the calculation.
-        processors: The number of processors used for the calculation.
-        run_date: Date on which the calculation was performed
+        grid: Keyword describing the DFT grid keyword usedf if DFT.
+        keywords: A list of keywords gicen, but not explicitly parsed, used in the calculation.
+        memory: The amount of memory requested for the calculation.
+        processors: The number of processors requested for the calculation.
         task: "Energy" or "Optimize" or "Frequencies" or "Transition State" or "Custom".
         theory: Method used for the calculation (e.g. "DFT" or "HF" or "MP2").
     """
@@ -139,10 +146,9 @@ class InputParameters(BaseModel):
     dispersion: Optional[str] = None
     functional: Optional[str] = None
     grid: Optional[str] = None
-    keywords_line: Optional[str] = None
+    keywords: Optional[str] = None
     memory: Optional[str] = None
     processors: Optional[str] = None
-    run_date: Optional[str] = None
     task: Optional[str] = None
     theory: Optional[str] = None
 
@@ -257,6 +263,7 @@ class CJSONModel(BaseModel):
     bonds: Optional[Bonds] = Field(None, description="Optional Bonds object, describing covalent bonds")
     properties: Optional[Properties] = Field(None, description="Optional free-form Properties, including total charge and total spin multiplicity.")
     inputParameters: Optional[InputParameters] = Field(None, description="Optional InputParameters object, including calculation metadata such as basis set, job type, etc.")
+    metadata: Optional[Metadata] = Field(None, description="Optional metadata object, including calculation details which do not directly impact results")
     partialCharges: Optional[PartialCharges] = Field(None, description="Optional PartialCharges object. Includes atomic partial charges and population analysis.")
     vibrations: Optional[Vibrations] = None
     unitCell: Optional[UnitCell] = None
