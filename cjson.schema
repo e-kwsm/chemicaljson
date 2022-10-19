@@ -285,7 +285,7 @@
     },
     "InputParameters": {
       "title": "InputParameters",
-      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    keywords: A list of keywords gicen, but not explicitly parsed, used in the calculation.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
+      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
       "type": "object",
       "properties": {
         "basis": {
@@ -302,10 +302,6 @@
         },
         "grid": {
           "title": "Grid",
-          "type": "string"
-        },
-        "keywords": {
-          "title": "Keywords",
           "type": "string"
         },
         "memory": {
@@ -331,8 +327,8 @@
       "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done ",
       "type": "object",
       "properties": {
-        "basis": {
-          "title": "Basis",
+        "runDate": {
+          "title": "Rundate",
           "type": "string"
         }
       }

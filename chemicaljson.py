@@ -125,7 +125,7 @@ class Metadata(BaseModel):
     Attributes:
         runDate: date calculation was done 
     """
-    basis: Optional[str] = None
+    runDate: Optional[str] = None
 
 class InputParameters(BaseModel):
     """Input parameters for the calculation. (Optional)
@@ -135,7 +135,6 @@ class InputParameters(BaseModel):
         dispersion: Dispersion correction used for the calculation (e.g. "D3" or "D3BJ")
         functional: Functional used for the calculation if DFT (e.g. "B3LYP" or "Custom").
         grid: Keyword describing the DFT grid keyword usedf if DFT.
-        keywords: A list of keywords gicen, but not explicitly parsed, used in the calculation.
         memory: The amount of memory requested for the calculation.
         processors: The number of processors requested for the calculation.
         task: "Energy" or "Optimize" or "Frequencies" or "Transition State" or "Custom".
@@ -146,7 +145,6 @@ class InputParameters(BaseModel):
     dispersion: Optional[str] = None
     functional: Optional[str] = None
     grid: Optional[str] = None
-    keywords: Optional[str] = None
     memory: Optional[str] = None
     processors: Optional[str] = None
     task: Optional[str] = None
