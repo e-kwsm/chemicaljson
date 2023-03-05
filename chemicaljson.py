@@ -20,9 +20,9 @@ class Coords(BaseModel):
     Length must match the number of atoms*3 (x, y, z).
     """
 
-    field_3d: List[float] = Field(..., alias="3d", description="List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]")
-    field_3dFractional: Optional[List[float]] = Field(None, alias="3dFractional", description="Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]")
-    field_3dSets: Optional[List[List[float]]] = Field(None, alias="3dSets", description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]")
+    field3d: List[float] = Field(..., alias="3d", description="List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]")
+    field3dFractional: Optional[List[float]] = Field(None, alias="3dFractional", description="Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]")
+    field3dSets: Optional[List[List[float]]] = Field(None, alias="3dSets", description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]")
 
 
 class Atoms(BaseModel):
@@ -144,7 +144,7 @@ class PartialCharges(BaseModel):
     - "Gasteiger": [ 0.01, 0.02, 0.03, ... ]
     """
 
-    Mulliken: List[float]
+    mulliken: List[float]
 
 
 class UnitCell(BaseModel):
@@ -189,21 +189,21 @@ class Enable(BaseModel):
     Length of each much match the number of layers.
     """
 
-    Ball_and_Stick: Optional[List[bool]] = Field(alias="Ball and Stick")
-    Cartoons: Optional[List[bool]]
-    Close_Contacts: Optional[List[bool]] = Field(alias="Close Contacts")
-    Labels: Optional[List[bool]]
-    Licorice: Optional[List[bool]]
-    Van_der_Waals: Optional[List[bool]] = Field(alias="Van der Waals")
-    Wireframe: Optional[List[bool]]
+    ballAndStick: Optional[List[bool]] = Field(alias="Ball and Stick")
+    cartoons: Optional[List[bool]]
+    closeContacts: Optional[List[bool]] = Field(alias="Close Contacts")
+    labels: Optional[List[bool]]
+    licorice: Optional[List[bool]]
+    vanDerWaals: Optional[List[bool]] = Field(alias="Van der Waals")
+    wireframe: Optional[List[bool]]
 
 
 class Settings(BaseModel):
     """Settings for the render types. (Optional)"""
 
-    Ball_and_Stick: Optional[List[str]] = Field(alias="Ball and Stick", description="Settings for the Ball and Stick rendering type")
-    Cartoons: Optional[List[str]]
-    Wireframe: Optional[List[str]]
+    ballAndStick: Optional[List[str]] = Field(alias="Ball and Stick", description="Settings for the Ball and Stick rendering type")
+    cartoons: Optional[List[str]]
+    wireframe: Optional[List[str]]
 
 
 class Layer(BaseModel):

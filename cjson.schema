@@ -302,7 +302,7 @@
       "description": "Partial charges for the atoms in the molecule. (Optional)\n\nKeys represent the partial charge method, followed by the computed partial charges.\ne.g.\n- \"Mulliken\": [ 0.01, 0.02, 0.03, ... ]\n- \"Gasteiger\": [ 0.01, 0.02, 0.03, ... ]",
       "type": "object",
       "properties": {
-        "Mulliken": {
+        "mulliken": {
           "title": "Mulliken",
           "type": "array",
           "items": {
@@ -311,7 +311,7 @@
         }
       },
       "required": [
-        "Mulliken"
+        "mulliken"
       ]
     },
     "Vibrations": {
@@ -441,7 +441,7 @@
             "type": "boolean"
           }
         },
-        "Cartoons": {
+        "cartoons": {
           "title": "Cartoons",
           "type": "array",
           "items": {
@@ -455,14 +455,14 @@
             "type": "boolean"
           }
         },
-        "Labels": {
+        "labels": {
           "title": "Labels",
           "type": "array",
           "items": {
             "type": "boolean"
           }
         },
-        "Licorice": {
+        "licorice": {
           "title": "Licorice",
           "type": "array",
           "items": {
@@ -476,7 +476,7 @@
             "type": "boolean"
           }
         },
-        "Wireframe": {
+        "wireframe": {
           "title": "Wireframe",
           "type": "array",
           "items": {
@@ -498,14 +498,14 @@
             "type": "string"
           }
         },
-        "Cartoons": {
+        "cartoons": {
           "title": "Cartoons",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "Wireframe": {
+        "wireframe": {
           "title": "Wireframe",
           "type": "array",
           "items": {
