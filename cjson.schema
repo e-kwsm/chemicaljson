@@ -324,7 +324,7 @@
     },
     "Metadata": {
       "title": "Metadata",
-      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done ",
+      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done",
       "type": "object",
       "properties": {
         "runDate": {

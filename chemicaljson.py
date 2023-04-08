@@ -123,7 +123,7 @@ class Metadata(BaseModel):
     """Metadata for the calculation. (Optional)
 
     Attributes:
-        runDate: date calculation was done 
+        runDate: date calculation was done
     """
     runDate: Optional[str] = None
 
