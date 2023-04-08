@@ -53,10 +53,19 @@
     },
     "inputParameters": {
       "title": "Inputparameters",
-      "description": "Optional InputParameters object, including calculation metadata such as bsais set, job type, etc.",
+      "description": "Optional InputParameters object, including calculation metadata such as basis set, job type, etc.",
       "allOf": [
         {
           "$ref": "#/definitions/InputParameters"
+        }
+      ]
+    },
+    "metadata": {
+      "title": "Metadata",
+      "description": "Optional metadata object, including calculation details which do not directly impact results",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Metadata"
         }
       ]
     },
@@ -276,15 +285,31 @@
     },
     "InputParameters": {
       "title": "InputParameters",
-      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".",
+      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
       "type": "object",
       "properties": {
         "basis": {
           "title": "Basis",
           "type": "string"
         },
+        "dispersion": {
+          "title": "Dispersion",
+          "type": "string"
+        },
         "functional": {
           "title": "Functional",
+          "type": "string"
+        },
+        "grid": {
+          "title": "Grid",
+          "type": "string"
+        },
+        "memory": {
+          "title": "Memory",
+          "type": "string"
+        },
+        "processors": {
+          "title": "Processors",
           "type": "string"
         },
         "task": {
@@ -293,6 +318,17 @@
         },
         "theory": {
           "title": "Theory",
+          "type": "string"
+        }
+      }
+    },
+    "Metadata": {
+      "title": "Metadata",
+      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done",
+      "type": "object",
+      "properties": {
+        "runDate": {
+          "title": "Rundate",
           "type": "string"
         }
       }
