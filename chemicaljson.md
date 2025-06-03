@@ -117,8 +117,8 @@ The example below shows a typical example of the output of the Avogadro 2 progra
 
 [CJSONWiki]: http://wiki.openchemistry.org/Chemical_JSON "Chemical JSON"
 [JSON]: http://www.json.org/ "JSON"
-[BSON]: http://bsonspec.org/ "BSON"
-[JSONRPC]: http://www.jsonrpc.org/specification "JSON-RPC 2.0"
+[BSON]: https://bsonspec.org/ "BSON"
+[JSONRPC]: https://www.jsonrpc.org/specification "JSON-RPC 2.0"
 [REST]: https://en.wikipedia.org/wiki/Representational_state_transfer "REST"
 [openspec]: https://en.wikipedia.org/wiki/Open_specifications "Open specifications"
 [CML]: http://www.xml-cml.org/ "Chemical Markup Language - CML"
