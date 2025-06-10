@@ -1,1014 +1,11 @@
 {
-  "$defs": {
-    "Atoms": {
-      "description": "Atoms in the molecule.",
-      "properties": {
-        "elements": {
-          "$ref": "#/$defs/Elements",
-          "description": "List of atomic numbers for the atoms."
-        },
-        "coords": {
-          "$ref": "#/$defs/Coords",
-          "description": "List of coordinates."
-        },
-        "formalCharges": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "integer"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of formal charges for the atoms.",
-          "title": "Formalcharges"
-        },
-        "labels": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of custom labels for atoms (e.g., 'R' / 'S' or '0.12', etc.)",
-          "title": "Labels"
-        },
-        "layer": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "integer"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of layer numbers for the atoms (generally just 1 for most molecules).",
-          "title": "Layer"
-        }
-      },
-      "required": [
-        "elements",
-        "coords"
-      ],
-      "title": "Atoms",
-      "type": "object"
-    },
-    "BasisSet": {
-      "description": "Basis Set information (optional)\n\nAt the moment, implied to be Gaussian basis sets.",
-      "properties": {
-        "coefficients": {
-          "description": "List of coefficients for the basis functions.",
-          "items": {
-            "type": "number"
-          },
-          "title": "Coefficients",
-          "type": "array"
-        },
-        "exponents": {
-          "description": "List of exponents for the basis functions.",
-          "items": {
-            "type": "number"
-          },
-          "title": "Exponents",
-          "type": "array"
-        },
-        "primitivesPerShell": {
-          "description": "List of number of primitives per shell.",
-          "items": {
-            "type": "integer"
-          },
-          "title": "Primitivespershell",
-          "type": "array"
-        },
-        "shellToAtomMap": {
-          "description": "List of atom indices for the basis functions.",
-          "items": {
-            "type": "integer"
-          },
-          "title": "Shelltoatommap",
-          "type": "array"
-        },
-        "shellTypes": {
-          "description": "List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).",
-          "items": {
-            "type": "integer"
-          },
-          "title": "Shelltypes",
-          "type": "array"
-        }
-      },
-      "required": [
-        "coefficients",
-        "exponents",
-        "primitivesPerShell",
-        "shellToAtomMap",
-        "shellTypes"
-      ],
-      "title": "BasisSet",
-      "type": "object"
-    },
-    "Bonds": {
-      "description": "Optional bonds between atoms, including connections and bond orders for the atoms in the molecule. (Optional)",
-      "properties": {
-        "connections": {
-          "$ref": "#/$defs/Connections"
-        },
-        "order": {
-          "items": {
-            "type": "integer"
-          },
-          "title": "Order",
-          "type": "array"
-        }
-      },
-      "required": [
-        "connections",
-        "order"
-      ],
-      "title": "Bonds",
-      "type": "object"
-    },
-    "Connections": {
-      "description": "Connections - list of connections between atom indices.\n\nLength must be the number of bonds * 2",
-      "properties": {
-        "index": {
-          "items": {
-            "type": "integer"
-          },
-          "title": "Index",
-          "type": "array"
-        }
-      },
-      "required": [
-        "index"
-      ],
-      "title": "Connections",
-      "type": "object"
-    },
-    "Coords": {
-      "description": "Coordinates for the atoms in the molecule.\n\nLength must match the number of atoms*3 (x, y, z).",
-      "properties": {
-        "3d": {
-          "description": "List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]",
-          "items": {
-            "type": "number"
-          },
-          "title": "3D",
-          "type": "array"
-        },
-        "3dFractional": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]",
-          "title": "3Dfractional"
-        },
-        "3dSets": {
-          "anyOf": [
-            {
-              "items": {
-                "items": {
-                  "type": "number"
-                },
-                "type": "array"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]",
-          "title": "3Dsets"
-        }
-      },
-      "required": [
-        "3d"
-      ],
-      "title": "Coords",
-      "type": "object"
-    },
-    "Electronic": {
-      "description": "Electronic spectra (optional)",
-      "properties": {
-        "energies": {
-          "description": "List of excitation energies for the electronic spectra (in eV)",
-          "items": {
-            "type": "number"
-          },
-          "title": "Energies",
-          "type": "array"
-        },
-        "intensities": {
-          "description": "List of intensities for the electronic spectra",
-          "items": {
-            "type": "number"
-          },
-          "title": "Intensities",
-          "type": "array"
-        },
-        "rotation": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional list of rotation angles for the CD spectra (in degrees)",
-          "title": "Rotation"
-        }
-      },
-      "required": [
-        "energies",
-        "intensities"
-      ],
-      "title": "Electronic",
-      "type": "object"
-    },
-    "Elements": {
-      "description": "List of elements for the atoms in the molecule.\n\nLength must match the number of atoms.",
-      "properties": {
-        "number": {
-          "description": "Required list of atomic numbers for the atoms in this file.",
-          "items": {
-            "type": "integer"
-          },
-          "title": "Number",
-          "type": "array"
-        }
-      },
-      "required": [
-        "number"
-      ],
-      "title": "Elements",
-      "type": "object"
-    },
-    "Enable": {
-      "description": "Optional enable flags for different render types for each layer\n\nLength of each much match the number of layers.",
-      "properties": {
-        "Ball and Stick": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Ball And Stick"
-        },
-        "cartoons": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Cartoons"
-        },
-        "Close Contacts": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Close Contacts"
-        },
-        "labels": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Labels"
-        },
-        "licorice": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Licorice"
-        },
-        "Van der Waals": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Van Der Waals"
-        },
-        "wireframe": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "boolean"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Wireframe"
-        }
-      },
-      "title": "Enable",
-      "type": "object"
-    },
-    "InputParameters": {
-      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
-      "properties": {
-        "basis": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Basis"
-        },
-        "dispersion": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Dispersion"
-        },
-        "functional": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Functional"
-        },
-        "grid": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Grid"
-        },
-        "memory": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Memory"
-        },
-        "processors": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Processors"
-        },
-        "task": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Task"
-        },
-        "theory": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Theory"
-        }
-      },
-      "title": "InputParameters",
-      "type": "object"
-    },
-    "Layer": {
-      "description": "Layer settings for the molecule. (Optional)\n\nAttributes:\n    enable: Enable flags for different render types for each layer.\n    settings: Settings for the render types.\n    locked: List of locked layers (e.g., atoms in this layer should not change)\n    visible: List of visible layers (e.g., atoms in this layer should be visible / invisible)",
-      "properties": {
-        "enable": {
-          "$ref": "#/$defs/Enable"
-        },
-        "locked": {
-          "items": {
-            "type": "boolean"
-          },
-          "title": "Locked",
-          "type": "array"
-        },
-        "settings": {
-          "$ref": "#/$defs/Settings"
-        },
-        "visible": {
-          "items": {
-            "type": "boolean"
-          },
-          "title": "Visible",
-          "type": "array"
-        }
-      },
-      "required": [
-        "enable",
-        "locked",
-        "settings",
-        "visible"
-      ],
-      "title": "Layer",
-      "type": "object"
-    },
-    "Metadata": {
-      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done",
-      "properties": {
-        "runDate": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Rundate"
-        }
-      },
-      "title": "Metadata",
-      "type": "object"
-    },
-    "Nmr": {
-      "description": "NMR spectra (optional)",
-      "properties": {
-        "shifts": {
-          "description": "List of absolute chemical shifts for the NMR spectra (in ppm)",
-          "items": {
-            "type": "number"
-          },
-          "title": "Shifts",
-          "type": "array"
-        }
-      },
-      "required": [
-        "shifts"
-      ],
-      "title": "Nmr",
-      "type": "object"
-    },
-    "Orbitals": {
-      "description": "Information about molecular orbital energies and coefficients. (Optional)\n\nTo be useful, this should include basis set information, electronCount, energies, ",
-      "properties": {
-        "electronCount": {
-          "description": "Number of electrons in the species",
-          "title": "Electroncount",
-          "type": "integer"
-        },
-        "energies": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "List of energies for the molecular orbitals (in eV)",
-          "title": "Energies"
-        },
-        "moCoefficients": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).",
-          "title": "Mocoefficients"
-        },
-        "alphaCoefficients": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).",
-          "title": "Alphacoefficients"
-        },
-        "betaCoefficients": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "List of coefficients (flattened) for beta open-shell orbitals, (requires BasisSet to be present).",
-          "title": "Betacoefficients"
-        },
-        "occupations": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "integer"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "List of occupations for the molecular orbitals",
-          "title": "Occupations"
-        },
-        "symmetries": {
-          "anyOf": [
-            {
-              "items": {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Symmetry of the orbital (e.g., a1, eg, t1g, etc.)",
-          "title": "Symmetries"
-        }
-      },
-      "required": [
-        "electronCount"
-      ],
-      "title": "Orbitals",
-      "type": "object"
-    },
-    "PartialCharges": {
-      "description": "Partial charges for the atoms in the molecule. (Optional)\n\nKeys represent the partial charge method, followed by the computed partial charges.\ne.g.\n- \"Mulliken\": [ 0.01, 0.02, 0.03, ... ]\n- \"Gasteiger\": [ 0.01, 0.02, 0.03, ... ]",
-      "properties": {
-        "mulliken": {
-          "items": {
-            "type": "number"
-          },
-          "title": "Mulliken",
-          "type": "array"
-        }
-      },
-      "required": [
-        "mulliken"
-      ],
-      "title": "PartialCharges",
-      "type": "object"
-    },
-    "Properties": {
-      "description": "Properties of the molecule / system. (Optional)\n\nA set of key-value properties.",
-      "properties": {
-        "molecularMass": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Molecularmass"
-        },
-        "meltingPoint": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Meltingpoint"
-        },
-        "boilingPoint": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Boilingpoint"
-        },
-        "totalCharge": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": 0,
-          "description": "Total charge of the system. If omitted, assume 0 (charge neutral)",
-          "title": "Totalcharge"
-        },
-        "totalSpinMultiplicity": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": 1,
-          "description": "Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)",
-          "title": "Totalspinmultiplicity"
-        },
-        "totalEnergy": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional total energy of the system in eV",
-          "title": "Totalenergy"
-        }
-      },
-      "title": "Properties",
-      "type": "object"
-    },
-    "Settings": {
-      "description": "Settings for the render types. (Optional)",
-      "properties": {
-        "Ball and Stick": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Settings for the Ball and Stick rendering type",
-          "title": "Ball And Stick"
-        },
-        "cartoons": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Cartoons"
-        },
-        "wireframe": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Wireframe"
-        }
-      },
-      "title": "Settings",
-      "type": "object"
-    },
-    "Spectra": {
-      "description": "Spectra (optional)\n\nObjects for non-vibrational spectra, including electronic, NMR, and other spectra.",
-      "properties": {
-        "electronic": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Electronic"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional electronic spectra"
-        },
-        "nmr": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Nmr"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Optional NMR spectra"
-        }
-      },
-      "title": "Spectra",
-      "type": "object"
-    },
-    "UnitCell": {
-      "description": "Unit cell for the system. (Optional)\n\nCurrent versions of Avogadro will output and preferentially use cellVectors,\nsince they fully specify the unit cell, but will also output a, b, c,\nalpha, beta, gamma parameters and use them if no cellVectors field is found.",
-      "properties": {
-        "a": {
-          "description": "Unit cell a-axis length (in Angstrom).",
-          "title": "A",
-          "type": "number"
-        },
-        "b": {
-          "description": "Unit cell b-axis length (in Angstrom).",
-          "title": "B",
-          "type": "number"
-        },
-        "c": {
-          "description": "Unit cell c-axis length (in Angstrom).",
-          "title": "C",
-          "type": "number"
-        },
-        "alpha": {
-          "description": "Unit cell alpha angle (in degrees).",
-          "title": "Alpha",
-          "type": "number"
-        },
-        "beta": {
-          "description": "Unit cell beta angle (in degrees).",
-          "title": "Beta",
-          "type": "number"
-        },
-        "gamma": {
-          "description": "Unit cell gamma angle (in degrees).",
-          "title": "Gamma",
-          "type": "number"
-        },
-        "cellVectors": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "maxItems": 9,
-              "minItems": 9,
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]",
-          "title": "Cellvectors"
-        }
-      },
-      "required": [
-        "a",
-        "b",
-        "c",
-        "alpha",
-        "beta",
-        "gamma"
-      ],
-      "title": "UnitCell",
-      "type": "object"
-    },
-    "Vibrations": {
-      "description": "Vibrations for the molecule. (Optional)\n\nAttributes:\n    ramanIntensities: Optional list of Raman intensities for the vibrations.\n    modes: Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])\n    symmetries: Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)",
-      "properties": {
-        "frequencies": {
-          "description": "List of frequencies (in cm-1) for the vibrations.",
-          "items": {
-            "type": "number"
-          },
-          "title": "Frequencies",
-          "type": "array"
-        },
-        "intensities": {
-          "description": "List of IR intensities for the vibrations.",
-          "items": {
-            "type": "number"
-          },
-          "title": "Intensities",
-          "type": "array"
-        },
-        "eigenVectors": {
-          "description": "List of eigenvectors (displacements in Angstroms) for the vibrations.",
-          "items": {
-            "items": {
-              "type": "number"
-            },
-            "type": "array"
-          },
-          "title": "Eigenvectors",
-          "type": "array"
-        },
-        "ramanIntensities": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Ramanintensities"
-        },
-        "symmetries": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Symmetries"
-        },
-        "modes": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "integer"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Modes"
-        }
-      },
-      "required": [
-        "frequencies",
-        "intensities",
-        "eigenVectors"
-      ],
-      "title": "Vibrations",
-      "type": "object"
-    }
-  },
-  "description": "Full Chemical JSON model.\n\nA Chemical JSON (CJSON) model is intended to represent one molecular or periodic system.\nCatenating multiple systems will result in invalid JSON - store separate systems as\nseparate files / JSON entries.\n\nAttributes:\n    vibrations: Vibrations object. Optional.\n    unitCell: UnitCell object. Optional.\n    layer: Layer object. Optional (used by the GUI for rendering / settings)\n    basisSet: BasisSet object. Optional.\n    orbitals: Orbitals object. Optional. Requires BasisSet to be present.",
+  "type": "object",
   "properties": {
     "chemicalJson": {
+      "type": "integer",
       "default": 1,
       "description": "Version number of the Chemical JSON format. Currently 1. Only changed for backwards-incompatible changes to the schema.",
-      "title": "Chemicaljson",
-      "type": "integer"
+      "title": "Chemicaljson"
     },
     "atoms": {
       "$ref": "#/$defs/Atoms",
@@ -1184,5 +181,1008 @@
     "atoms"
   ],
   "title": "CJSONModel",
-  "type": "object"
+  "description": "Full Chemical JSON model.\n\nA Chemical JSON (CJSON) model is intended to represent one molecular or periodic system.\nCatenating multiple systems will result in invalid JSON - store separate systems as\nseparate files / JSON entries.\n\nAttributes:\n    vibrations: Vibrations object. Optional.\n    unitCell: UnitCell object. Optional.\n    layer: Layer object. Optional (used by the GUI for rendering / settings)\n    basisSet: BasisSet object. Optional.\n    orbitals: Orbitals object. Optional. Requires BasisSet to be present.",
+  "$defs": {
+    "Elements": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Required list of atomic numbers for the atoms in this file.",
+          "title": "Number"
+        }
+      },
+      "required": [
+        "number"
+      ],
+      "title": "Elements",
+      "description": "List of elements for the atoms in the molecule.\n\nLength must match the number of atoms."
+    },
+    "Coords": {
+      "type": "object",
+      "properties": {
+        "3d": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]",
+          "title": "3D"
+        },
+        "3dFractional": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]",
+          "title": "3Dfractional"
+        },
+        "3dSets": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]",
+          "title": "3Dsets"
+        }
+      },
+      "required": [
+        "3d"
+      ],
+      "title": "Coords",
+      "description": "Coordinates for the atoms in the molecule.\n\nLength must match the number of atoms*3 (x, y, z)."
+    },
+    "Atoms": {
+      "type": "object",
+      "properties": {
+        "elements": {
+          "$ref": "#/$defs/Elements",
+          "description": "List of atomic numbers for the atoms."
+        },
+        "coords": {
+          "$ref": "#/$defs/Coords",
+          "description": "List of coordinates."
+        },
+        "formalCharges": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of formal charges for the atoms.",
+          "title": "Formalcharges"
+        },
+        "labels": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of custom labels for atoms (e.g., 'R' / 'S' or '0.12', etc.)",
+          "title": "Labels"
+        },
+        "layer": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of layer numbers for the atoms (generally just 1 for most molecules).",
+          "title": "Layer"
+        }
+      },
+      "required": [
+        "elements",
+        "coords"
+      ],
+      "title": "Atoms",
+      "description": "Atoms in the molecule."
+    },
+    "Connections": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Index"
+        }
+      },
+      "required": [
+        "index"
+      ],
+      "title": "Connections",
+      "description": "Connections - list of connections between atom indices.\n\nLength must be the number of bonds * 2"
+    },
+    "Bonds": {
+      "type": "object",
+      "properties": {
+        "connections": {
+          "$ref": "#/$defs/Connections"
+        },
+        "order": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Order"
+        }
+      },
+      "required": [
+        "connections",
+        "order"
+      ],
+      "title": "Bonds",
+      "description": "Optional bonds between atoms, including connections and bond orders for the atoms in the molecule. (Optional)"
+    },
+    "Properties": {
+      "type": "object",
+      "properties": {
+        "molecularMass": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Molecularmass"
+        },
+        "meltingPoint": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meltingpoint"
+        },
+        "boilingPoint": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boilingpoint"
+        },
+        "totalCharge": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0,
+          "description": "Total charge of the system. If omitted, assume 0 (charge neutral)",
+          "title": "Totalcharge"
+        },
+        "totalSpinMultiplicity": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1,
+          "description": "Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)",
+          "title": "Totalspinmultiplicity"
+        },
+        "totalEnergy": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional total energy of the system in eV",
+          "title": "Totalenergy"
+        }
+      },
+      "title": "Properties",
+      "description": "Properties of the molecule / system. (Optional)\n\nA set of key-value properties."
+    },
+    "InputParameters": {
+      "type": "object",
+      "properties": {
+        "basis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Basis"
+        },
+        "dispersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dispersion"
+        },
+        "functional": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Functional"
+        },
+        "grid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Grid"
+        },
+        "memory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Memory"
+        },
+        "processors": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Processors"
+        },
+        "task": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Task"
+        },
+        "theory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Theory"
+        }
+      },
+      "title": "InputParameters",
+      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\")."
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "runDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rundate"
+        }
+      },
+      "title": "Metadata",
+      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done"
+    },
+    "PartialCharges": {
+      "type": "object",
+      "properties": {
+        "mulliken": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "title": "Mulliken"
+        }
+      },
+      "required": [
+        "mulliken"
+      ],
+      "title": "PartialCharges",
+      "description": "Partial charges for the atoms in the molecule. (Optional)\n\nKeys represent the partial charge method, followed by the computed partial charges.\ne.g.\n- \"Mulliken\": [ 0.01, 0.02, 0.03, ... ]\n- \"Gasteiger\": [ 0.01, 0.02, 0.03, ... ]"
+    },
+    "Vibrations": {
+      "type": "object",
+      "properties": {
+        "frequencies": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of frequencies (in cm-1) for the vibrations.",
+          "title": "Frequencies"
+        },
+        "intensities": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of IR intensities for the vibrations.",
+          "title": "Intensities"
+        },
+        "eigenVectors": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "description": "List of eigenvectors (displacements in Angstroms) for the vibrations.",
+          "title": "Eigenvectors"
+        },
+        "ramanIntensities": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ramanintensities"
+        },
+        "symmetries": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Symmetries"
+        },
+        "modes": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modes"
+        }
+      },
+      "required": [
+        "frequencies",
+        "intensities",
+        "eigenVectors"
+      ],
+      "title": "Vibrations",
+      "description": "Vibrations for the molecule. (Optional)\n\nAttributes:\n    ramanIntensities: Optional list of Raman intensities for the vibrations.\n    modes: Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])\n    symmetries: Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)"
+    },
+    "UnitCell": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "type": "number",
+          "description": "Unit cell a-axis length (in Angstrom).",
+          "title": "A"
+        },
+        "b": {
+          "type": "number",
+          "description": "Unit cell b-axis length (in Angstrom).",
+          "title": "B"
+        },
+        "c": {
+          "type": "number",
+          "description": "Unit cell c-axis length (in Angstrom).",
+          "title": "C"
+        },
+        "alpha": {
+          "type": "number",
+          "description": "Unit cell alpha angle (in degrees).",
+          "title": "Alpha"
+        },
+        "beta": {
+          "type": "number",
+          "description": "Unit cell beta angle (in degrees).",
+          "title": "Beta"
+        },
+        "gamma": {
+          "type": "number",
+          "description": "Unit cell gamma angle (in degrees).",
+          "title": "Gamma"
+        },
+        "cellVectors": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 9,
+              "maxItems": 9
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]",
+          "title": "Cellvectors"
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "c",
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "title": "UnitCell",
+      "description": "Unit cell for the system. (Optional)\n\nCurrent versions of Avogadro will output and preferentially use cellVectors,\nsince they fully specify the unit cell, but will also output a, b, c,\nalpha, beta, gamma parameters and use them if no cellVectors field is found."
+    },
+    "Enable": {
+      "type": "object",
+      "properties": {
+        "Ball and Stick": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ball And Stick"
+        },
+        "cartoons": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cartoons"
+        },
+        "Close Contacts": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Close Contacts"
+        },
+        "labels": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Labels"
+        },
+        "licorice": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licorice"
+        },
+        "Van der Waals": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Van Der Waals"
+        },
+        "wireframe": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wireframe"
+        }
+      },
+      "title": "Enable",
+      "description": "Optional enable flags for different render types for each layer\n\nLength of each much match the number of layers."
+    },
+    "Settings": {
+      "type": "object",
+      "properties": {
+        "Ball and Stick": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Settings for the Ball and Stick rendering type",
+          "title": "Ball And Stick"
+        },
+        "cartoons": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cartoons"
+        },
+        "wireframe": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wireframe"
+        }
+      },
+      "title": "Settings",
+      "description": "Settings for the render types. (Optional)"
+    },
+    "Layer": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "$ref": "#/$defs/Enable"
+        },
+        "locked": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "title": "Locked"
+        },
+        "settings": {
+          "$ref": "#/$defs/Settings"
+        },
+        "visible": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "title": "Visible"
+        }
+      },
+      "required": [
+        "enable",
+        "locked",
+        "settings",
+        "visible"
+      ],
+      "title": "Layer",
+      "description": "Layer settings for the molecule. (Optional)\n\nAttributes:\n    enable: Enable flags for different render types for each layer.\n    settings: Settings for the render types.\n    locked: List of locked layers (e.g., atoms in this layer should not change)\n    visible: List of visible layers (e.g., atoms in this layer should be visible / invisible)"
+    },
+    "BasisSet": {
+      "type": "object",
+      "properties": {
+        "coefficients": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of coefficients for the basis functions.",
+          "title": "Coefficients"
+        },
+        "exponents": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of exponents for the basis functions.",
+          "title": "Exponents"
+        },
+        "primitivesPerShell": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "List of number of primitives per shell.",
+          "title": "Primitivespershell"
+        },
+        "shellToAtomMap": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "List of atom indices for the basis functions.",
+          "title": "Shelltoatommap"
+        },
+        "shellTypes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).",
+          "title": "Shelltypes"
+        }
+      },
+      "required": [
+        "coefficients",
+        "exponents",
+        "primitivesPerShell",
+        "shellToAtomMap",
+        "shellTypes"
+      ],
+      "title": "BasisSet",
+      "description": "Basis Set information (optional)\n\nAt the moment, implied to be Gaussian basis sets."
+    },
+    "Orbitals": {
+      "type": "object",
+      "properties": {
+        "electronCount": {
+          "type": "integer",
+          "description": "Number of electrons in the species",
+          "title": "Electroncount"
+        },
+        "energies": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List of energies for the molecular orbitals (in eV)",
+          "title": "Energies"
+        },
+        "moCoefficients": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).",
+          "title": "Mocoefficients"
+        },
+        "alphaCoefficients": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).",
+          "title": "Alphacoefficients"
+        },
+        "betaCoefficients": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List of coefficients (flattened) for beta open-shell orbitals, (requires BasisSet to be present).",
+          "title": "Betacoefficients"
+        },
+        "occupations": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List of occupations for the molecular orbitals",
+          "title": "Occupations"
+        },
+        "symmetries": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Symmetry of the orbital (e.g., a1, eg, t1g, etc.)",
+          "title": "Symmetries"
+        }
+      },
+      "required": [
+        "electronCount"
+      ],
+      "title": "Orbitals",
+      "description": "Information about molecular orbital energies and coefficients. (Optional)\n\nTo be useful, this should include basis set information, electronCount, energies, "
+    },
+    "Electronic": {
+      "type": "object",
+      "properties": {
+        "energies": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of excitation energies for the electronic spectra (in eV)",
+          "title": "Energies"
+        },
+        "intensities": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of intensities for the electronic spectra",
+          "title": "Intensities"
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional list of rotation angles for the CD spectra (in degrees)",
+          "title": "Rotation"
+        }
+      },
+      "required": [
+        "energies",
+        "intensities"
+      ],
+      "title": "Electronic",
+      "description": "Electronic spectra (optional)"
+    },
+    "Nmr": {
+      "type": "object",
+      "properties": {
+        "shifts": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "List of absolute chemical shifts for the NMR spectra (in ppm)",
+          "title": "Shifts"
+        }
+      },
+      "required": [
+        "shifts"
+      ],
+      "title": "Nmr",
+      "description": "NMR spectra (optional)"
+    },
+    "Spectra": {
+      "type": "object",
+      "properties": {
+        "electronic": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Electronic"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional electronic spectra"
+        },
+        "nmr": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Nmr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional NMR spectra"
+        }
+      },
+      "title": "Spectra",
+      "description": "Spectra (optional)\n\nObjects for non-vibrational spectra, including electronic, NMR, and other spectra."
+    }
+  }
 }

@@ -3,7 +3,18 @@ from __future__ import annotations
 import json
 from typing import List, Optional
 
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
+from pydantic.json_schema import GenerateJsonSchema, JsonSchemaValue
+
+
+class MyGenerateJsonSchema(GenerateJsonSchema):
+    """https://docs.pydantic.dev/2.12/concepts/json_schema/#json-schema-sorting"""
+
+    def sort(
+        self, value: JsonSchemaValue, parent_key: Optional[str] = None
+    ) -> JsonSchemaValue:
+        """No-op, we don't want to sort schema values at all."""
+        return value
 
 
 class Elements(BaseModel):
@@ -274,5 +285,10 @@ class CJSONModel(BaseModel):
 
 if __name__ == "__main__":
     with open("cjson.schema", "w") as handle:
-        handle.write(json.dumps(CJSONModel.model_json_schema(), indent=2))
+        handle.write(
+            json.dumps(
+                CJSONModel.model_json_schema(schema_generator=MyGenerateJsonSchema),
+                indent=2,
+            )
+        )
         handle.write("\n")
