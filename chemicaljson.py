@@ -171,12 +171,12 @@ class UnitCell(BaseModel):
     alpha, beta, gamma parameters and use them if no cellVectors field is found.
     """
 
-    a: float = Field(..., description="Unit cell a-axis length (in Angstrom).")
-    b: float = Field(..., description="Unit cell b-axis length (in Angstrom).")
-    c: float = Field(..., description="Unit cell c-axis length (in Angstrom).")
-    alpha: float = Field(..., description="Unit cell alpha angle (in degrees).")
-    beta: float = Field(..., description="Unit cell beta angle (in degrees).")
-    gamma: float = Field(..., description="Unit cell gamma angle (in degrees).")
+    a: float = Field(..., description="Unit cell a-axis length (in Angstrom).", gt=0)
+    b: float = Field(..., description="Unit cell b-axis length (in Angstrom).", gt=0)
+    c: float = Field(..., description="Unit cell c-axis length (in Angstrom).", gt=0)
+    alpha: float = Field(..., description="Unit cell alpha angle (in degrees).", gt=0)
+    beta: float = Field(..., description="Unit cell beta angle (in degrees).", gt=0)
+    gamma: float = Field(..., description="Unit cell gamma angle (in degrees).", gt=0)
     cellVectors: Optional[List[float]] = Field(
         min_items=9, max_items=9, default_factory=lambda: [0.0 for _ in range(9)], description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
     )

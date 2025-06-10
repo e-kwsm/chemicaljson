@@ -420,31 +420,37 @@
         "a": {
           "title": "A",
           "description": "Unit cell a-axis length (in Angstrom).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "b": {
           "title": "B",
           "description": "Unit cell b-axis length (in Angstrom).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "c": {
           "title": "C",
           "description": "Unit cell c-axis length (in Angstrom).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "alpha": {
           "title": "Alpha",
           "description": "Unit cell alpha angle (in degrees).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "beta": {
           "title": "Beta",
           "description": "Unit cell beta angle (in degrees).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "gamma": {
           "title": "Gamma",
           "description": "Unit cell gamma angle (in degrees).",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "cellVectors": {
