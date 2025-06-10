@@ -285,50 +285,59 @@
     },
     "InputParameters": {
       "title": "InputParameters",
-      "description": "Input parameters for the calculation. (Optional)\n\nAttributes:\n    basis: Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").\n    dispersion: Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")\n    functional: Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").\n    grid: Keyword describing the DFT grid keyword usedf if DFT.\n    memory: The amount of memory requested for the calculation.\n    processors: The number of processors requested for the calculation.\n    task: \"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".\n    theory: Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
+      "description": "Input parameters for the calculation. (Optional)",
       "type": "object",
       "properties": {
         "basis": {
           "title": "Basis",
+          "description": "Basis set used for the calculation (e.g. \"6-31G(d)\" or \"Custom\").",
           "type": "string"
         },
         "dispersion": {
           "title": "Dispersion",
+          "description": "Dispersion correction used for the calculation (e.g. \"D3\" or \"D3BJ\")",
           "type": "string"
         },
         "functional": {
           "title": "Functional",
+          "description": "Functional used for the calculation if DFT (e.g. \"B3LYP\" or \"Custom\").",
           "type": "string"
         },
         "grid": {
           "title": "Grid",
+          "description": "Keyword describing the DFT grid keyword usedf if DFT.",
           "type": "string"
         },
         "memory": {
           "title": "Memory",
+          "description": "The amount of memory requested for the calculation.",
           "type": "string"
         },
         "processors": {
           "title": "Processors",
+          "description": "The number of processors requested for the calculation.",
           "type": "string"
         },
         "task": {
           "title": "Task",
+          "description": "\"Energy\" or \"Optimize\" or \"Frequencies\" or \"Transition State\" or \"Custom\".",
           "type": "string"
         },
         "theory": {
           "title": "Theory",
+          "description": "Method used for the calculation (e.g. \"DFT\" or \"HF\" or \"MP2\").",
           "type": "string"
         }
       }
     },
     "Metadata": {
       "title": "Metadata",
-      "description": "Metadata for the calculation. (Optional)\n\nAttributes:\n    runDate: date calculation was done",
+      "description": "Metadata for the calculation. (Optional)",
       "type": "object",
       "properties": {
         "runDate": {
           "title": "Rundate",
+          "description": "date calculation was done",
           "type": "string"
         }
       }
@@ -352,7 +361,7 @@
     },
     "Vibrations": {
       "title": "Vibrations",
-      "description": "Vibrations for the molecule. (Optional)\n\nAttributes:\n    ramanIntensities: Optional list of Raman intensities for the vibrations.\n    modes: Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])\n    symmetries: Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)",
+      "description": "Vibrations for the molecule. (Optional)",
       "type": "object",
       "properties": {
         "frequencies": {
@@ -384,6 +393,7 @@
         },
         "ramanIntensities": {
           "title": "Ramanintensities",
+          "description": "Optional list of Raman intensities for the vibrations.",
           "type": "array",
           "items": {
             "type": "number"
@@ -391,6 +401,7 @@
         },
         "symmetries": {
           "title": "Symmetries",
+          "description": "Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)",
           "type": "array",
           "items": {
             "type": "string"
@@ -398,6 +409,7 @@
         },
         "modes": {
           "title": "Modes",
+          "description": "Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])",
           "type": "array",
           "items": {
             "type": "integer"
@@ -407,7 +419,10 @@
       "required": [
         "frequencies",
         "intensities",
-        "eigenVectors"
+        "eigenVectors",
+        "ramanIntensities",
+        "symmetries",
+        "modes"
       ]
     },
     "UnitCell": {

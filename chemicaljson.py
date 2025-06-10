@@ -120,35 +120,20 @@ class Properties(BaseModel):
 
 
 class Metadata(BaseModel):
-    """Metadata for the calculation. (Optional)
-
-    Attributes:
-        runDate: date calculation was done
-    """
-    runDate: Optional[str] = None
+    """Metadata for the calculation. (Optional)"""
+    runDate: Optional[str] = Field(None, description="date calculation was done")
 
 class InputParameters(BaseModel):
-    """Input parameters for the calculation. (Optional)
+    """Input parameters for the calculation. (Optional)"""
 
-    Attributes:
-        basis: Basis set used for the calculation (e.g. "6-31G(d)" or "Custom").
-        dispersion: Dispersion correction used for the calculation (e.g. "D3" or "D3BJ")
-        functional: Functional used for the calculation if DFT (e.g. "B3LYP" or "Custom").
-        grid: Keyword describing the DFT grid keyword usedf if DFT.
-        memory: The amount of memory requested for the calculation.
-        processors: The number of processors requested for the calculation.
-        task: "Energy" or "Optimize" or "Frequencies" or "Transition State" or "Custom".
-        theory: Method used for the calculation (e.g. "DFT" or "HF" or "MP2").
-    """
-
-    basis: Optional[str] = None
-    dispersion: Optional[str] = None
-    functional: Optional[str] = None
-    grid: Optional[str] = None
-    memory: Optional[str] = None
-    processors: Optional[str] = None
-    task: Optional[str] = None
-    theory: Optional[str] = None
+    basis: Optional[str] = Field(None, description='Basis set used for the calculation (e.g. "6-31G(d)" or "Custom").')
+    dispersion: Optional[str] = Field(None, description='Dispersion correction used for the calculation (e.g. "D3" or "D3BJ")')
+    functional: Optional[str] = Field(None, description='Functional used for the calculation if DFT (e.g. "B3LYP" or "Custom").')
+    grid: Optional[str] = Field(None, description="Keyword describing the DFT grid keyword usedf if DFT.")
+    memory: Optional[str] = Field(None, description="The amount of memory requested for the calculation.")
+    processors: Optional[str] = Field(None, description="The number of processors requested for the calculation.")
+    task: Optional[str] = Field(None, description='"Energy" or "Optimize" or "Frequencies" or "Transition State" or "Custom".')
+    theory: Optional[str] = Field(None, description='Method used for the calculation (e.g. "DFT" or "HF" or "MP2").')
 
 
 class PartialCharges(BaseModel):
@@ -183,20 +168,14 @@ class UnitCell(BaseModel):
 
 
 class Vibrations(BaseModel):
-    """Vibrations for the molecule. (Optional)
-
-    Attributes:
-        ramanIntensities: Optional list of Raman intensities for the vibrations.
-        modes: Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])
-        symmetries: Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)
-    """
+    """Vibrations for the molecule. (Optional)"""
 
     frequencies: List[float] = Field(... , description="List of frequencies (in cm-1) for the vibrations.")
     intensities: List[float] = Field(... , description="List of IR intensities for the vibrations.")
     eigenVectors: List[List[float]] = Field(..., description="List of eigenvectors (displacements in Angstroms) for the vibrations.")
-    ramanIntensities: Optional[List[float]]
-    symmetries: Optional[List[str]]
-    modes: Optional[List[int]]
+    ramanIntensities: Optional[List[float]] = Field(..., description="Optional list of Raman intensities for the vibrations.")
+    symmetries: Optional[List[str]] = Field(..., description="Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)")
+    modes: Optional[List[int]] = Field(..., description="Optional list of mode numbers (e.g, [ 1, 2, 3, 4, 5, 6, ... ])")
 
 
 class Enable(BaseModel):
