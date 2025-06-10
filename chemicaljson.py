@@ -77,7 +77,7 @@ class Orbitals(BaseModel):
     moCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).")
     alphaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).")
     betaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for beta open-shell orbitals, (requires BasisSet to be present).")
-    occupations: Optional[List[int]] = Field(None, description="List of occupations for the molecular orbitals")
+    occupations: Optional[List[Literal[0, 1, 2]]] = Field(None, description="List of occupations for the molecular orbitals")
     symmetries: Optional[List[List[str]]] = Field(None, description="Symmetry of the orbital (e.g., a1, eg, t1g, etc.)")
 
 

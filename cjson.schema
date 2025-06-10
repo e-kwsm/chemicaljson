@@ -697,6 +697,11 @@
           "description": "List of occupations for the molecular orbitals",
           "type": "array",
           "items": {
+            "enum": [
+              0,
+              1,
+              2
+            ],
             "type": "integer"
           }
         },
