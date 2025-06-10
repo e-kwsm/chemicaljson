@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Annotated, List, Optional
 
 from pydantic.v1 import BaseModel, Field
 
@@ -22,7 +22,7 @@ class Coords(BaseModel):
 
     field3d: List[float] = Field(..., alias="3d", description="List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]")
     field3dFractional: Optional[List[float]] = Field(None, alias="3dFractional", description="Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]")
-    field3dSets: Optional[List[List[float]]] = Field(None, alias="3dSets", description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]")
+    field3dSets: Optional[List[Annotated[List[float], Field(min_length=3, max_length=3)]]] = Field(None, alias="3dSets", description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]")
 
 
 class Atoms(BaseModel):
