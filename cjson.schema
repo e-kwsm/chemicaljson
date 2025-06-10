@@ -256,6 +256,7 @@
       "properties": {
         "molecularMass": {
           "title": "Molecularmass",
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         "meltingPoint": {
@@ -610,7 +611,8 @@
           "description": "List of exponents for the basis functions.",
           "type": "array",
           "items": {
-            "type": "number"
+            "type": "number",
+            "exclusiveMinimum": 0
           }
         },
         "primitivesPerShell": {

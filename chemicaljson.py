@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Annotated, List, Optional
 
-from pydantic.v1 import BaseModel, Field, NonNegativeInt, PositiveInt
+from pydantic.v1 import BaseModel, Field, NonNegativeInt, PositiveFloat, PositiveInt
 
 
 class Elements(BaseModel):
@@ -60,7 +60,7 @@ class BasisSet(BaseModel):
     """
 
     coefficients: List[float] = Field(..., description="List of coefficients for the basis functions.")
-    exponents: List[float] = Field(..., description="List of exponents for the basis functions.")
+    exponents: List[PositiveFloat] = Field(..., description="List of exponents for the basis functions.")
     primitivesPerShell: List[PositiveInt] = Field(..., description="List of number of primitives per shell.")
     shellToAtomMap: List[NonNegativeInt] = Field(..., description="List of atom indices for the basis functions.")
     shellTypes: List[NonNegativeInt] = Field(..., description="List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).")
@@ -111,7 +111,7 @@ class Properties(BaseModel):
     A set of key-value properties.
     """
 
-    molecularMass: Optional[float] = None
+    molecularMass: Optional[PositiveFloat] = None
     meltingPoint: Optional[float] = None
     boilingPoint: Optional[float] = None
     totalCharge: Optional[int] = Field(0, description="Total charge of the system. If omitted, assume 0 (charge neutral)")
