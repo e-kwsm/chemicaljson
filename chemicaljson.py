@@ -179,7 +179,7 @@ class UnitCell(BaseModel):
     beta: float = Field(..., description="Unit cell beta angle (in degrees).")
     gamma: float = Field(..., description="Unit cell gamma angle (in degrees).")
     cellVectors: Optional[List[float]] = Field(
-        min_items=9, max_items=9, default_factory=lambda: [0.0 for _ in range(9)], description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
+        min_length=9, max_length=9, default_factory=lambda: [0.0 for _ in range(9)], description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
     )
 
 
@@ -195,9 +195,9 @@ class Vibrations(BaseModel):
     frequencies: List[float] = Field(... , description="List of frequencies (in cm-1) for the vibrations.")
     intensities: List[float] = Field(... , description="List of IR intensities for the vibrations.")
     eigenVectors: List[List[float]] = Field(..., description="List of eigenvectors (displacements in Angstroms) for the vibrations.")
-    ramanIntensities: Optional[List[float]]
-    symmetries: Optional[List[str]]
-    modes: Optional[List[int]]
+    ramanIntensities: Optional[List[float]] = None
+    symmetries: Optional[List[str]] = None
+    modes: Optional[List[int]] = None
 
 
 class Enable(BaseModel):
@@ -206,21 +206,21 @@ class Enable(BaseModel):
     Length of each much match the number of layers.
     """
 
-    ballAndStick: Optional[List[bool]] = Field(alias="Ball and Stick")
-    cartoons: Optional[List[bool]]
-    closeContacts: Optional[List[bool]] = Field(alias="Close Contacts")
-    labels: Optional[List[bool]]
-    licorice: Optional[List[bool]]
-    vanDerWaals: Optional[List[bool]] = Field(alias="Van der Waals")
-    wireframe: Optional[List[bool]]
+    ballAndStick: Optional[List[bool]] = Field(None, alias="Ball and Stick")
+    cartoons: Optional[List[bool]] = None
+    closeContacts: Optional[List[bool]] = Field(None, alias="Close Contacts")
+    labels: Optional[List[bool]] = None
+    licorice: Optional[List[bool]] = None
+    vanDerWaals: Optional[List[bool]] = Field(None, alias="Van der Waals")
+    wireframe: Optional[List[bool]] = None
 
 
 class Settings(BaseModel):
     """Settings for the render types. (Optional)"""
 
-    ballAndStick: Optional[List[str]] = Field(alias="Ball and Stick", description="Settings for the Ball and Stick rendering type")
-    cartoons: Optional[List[str]]
-    wireframe: Optional[List[str]]
+    ballAndStick: Optional[List[str]] = Field(None, alias="Ball and Stick", description="Settings for the Ball and Stick rendering type")
+    cartoons: Optional[List[str]] = None
+    wireframe: Optional[List[str]] = None
 
 
 class Layer(BaseModel):

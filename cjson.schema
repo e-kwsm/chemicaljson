@@ -288,6 +288,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Ball And Stick"
         },
         "cartoons": {
@@ -302,6 +303,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Cartoons"
         },
         "Close Contacts": {
@@ -316,6 +318,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Close Contacts"
         },
         "labels": {
@@ -330,6 +333,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Labels"
         },
         "licorice": {
@@ -344,6 +348,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Licorice"
         },
         "Van der Waals": {
@@ -358,6 +363,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Van Der Waals"
         },
         "wireframe": {
@@ -372,18 +378,10 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Wireframe"
         }
       },
-      "required": [
-        "Ball and Stick",
-        "cartoons",
-        "Close Contacts",
-        "labels",
-        "licorice",
-        "Van der Waals",
-        "wireframe"
-      ],
       "title": "Enable",
       "type": "object"
     },
@@ -788,6 +786,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "description": "Settings for the Ball and Stick rendering type",
           "title": "Ball And Stick"
         },
@@ -803,6 +802,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Cartoons"
         },
         "wireframe": {
@@ -817,14 +817,10 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Wireframe"
         }
       },
-      "required": [
-        "Ball and Stick",
-        "cartoons",
-        "wireframe"
-      ],
       "title": "Settings",
       "type": "object"
     },
@@ -963,6 +959,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Ramanintensities"
         },
         "symmetries": {
@@ -977,6 +974,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Symmetries"
         },
         "modes": {
@@ -991,16 +989,14 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Modes"
         }
       },
       "required": [
         "frequencies",
         "intensities",
-        "eigenVectors",
-        "ramanIntensities",
-        "symmetries",
-        "modes"
+        "eigenVectors"
       ],
       "title": "Vibrations",
       "type": "object"
