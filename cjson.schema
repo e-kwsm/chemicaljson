@@ -238,7 +238,8 @@
           "title": "Order",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "exclusiveMinimum": 0
           }
         }
       },
@@ -274,6 +275,7 @@
           "title": "Totalspinmultiplicity",
           "description": "Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)",
           "default": 1,
+          "minimum": 1,
           "type": "integer"
         },
         "totalEnergy": {
@@ -625,7 +627,8 @@
           "description": "List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0
           }
         }
       },
