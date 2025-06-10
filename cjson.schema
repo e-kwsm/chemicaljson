@@ -263,10 +263,12 @@
         },
         "meltingPoint": {
           "title": "Meltingpoint",
+          "description": "in degree Celsius",
           "type": "number"
         },
         "boilingPoint": {
           "title": "Boilingpoint",
+          "description": "in degree Celsius",
           "type": "number"
         },
         "totalCharge": {
