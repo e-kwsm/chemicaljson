@@ -112,8 +112,8 @@ class Properties(BaseModel):
     """
 
     molecularMass: Optional[float] = None
-    meltingPoint: Optional[float] = None
-    boilingPoint: Optional[float] = None
+    meltingPoint: Optional[float] = Field(None, description="in degree Celsius")
+    boilingPoint: Optional[float] = Field(None, description="in degree Celsius")
     totalCharge: Optional[int] = Field(0, description="Total charge of the system. If omitted, assume 0 (charge neutral)")
     totalSpinMultiplicity: Optional[int] = Field(1, description="Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)")
     totalEnergy: Optional[float] = Field(None, description="Optional total energy of the system in eV")
