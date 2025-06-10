@@ -72,7 +72,7 @@ class Orbitals(BaseModel):
     To be useful, this should include basis set information, electronCount, energies, 
     """
 
-    electronCount: int = Field(..., description="Number of electrons in the species")
+    electronCount: int = Field(..., description="Number of electrons in the species", ge=0)
     energies: Optional[List[float]] = Field(None, description="List of energies for the molecular orbitals (in eV)")
     moCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).")
     alphaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).")

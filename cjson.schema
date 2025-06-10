@@ -657,6 +657,7 @@
         "electronCount": {
           "title": "Electroncount",
           "description": "Number of electrons in the species",
+          "minimum": 0,
           "type": "integer"
         },
         "energies": {
