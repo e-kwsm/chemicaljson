@@ -7,6 +7,7 @@
       "title": "Chemicaljson",
       "description": "Version number of the Chemical JSON format. Currently 1. Only changed for backwards-incompatible changes to the schema.",
       "default": 1,
+      "minimum": 0,
       "type": "integer"
     },
     "atoms": {
@@ -26,6 +27,7 @@
     "inchi": {
       "title": "Inchi",
       "description": "Optional InChI descriptor for the molecule",
+      "pattern": "^1S?/[A-Z]\\S*",
       "type": "string"
     },
     "formula": {

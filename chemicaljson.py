@@ -253,10 +253,10 @@ class CJSONModel(BaseModel):
         orbitals: Orbitals object. Optional. Requires BasisSet to be present.
     """
 
-    chemicalJson: int = Field(1, description="Version number of the Chemical JSON format. Currently 1. Only changed for backwards-incompatible changes to the schema.")
+    chemicalJson: int = Field(1, description="Version number of the Chemical JSON format. Currently 1. Only changed for backwards-incompatible changes to the schema.", ge=0)
     atoms: Atoms = Field(..., description="Atoms object, describing the atoms in this system.")
     name: Optional[str] = Field(None, description="Optional name / title for the molecule")
-    inchi: Optional[str] = Field(None, description="Optional InChI descriptor for the molecule")
+    inchi: Optional[str] = Field(None, description="Optional InChI descriptor for the molecule", pattern=r"^1S?/[A-Z]\S*")
     formula: Optional[str] = Field(None, description="Optional chemical formula in Hill order")
     bonds: Optional[Bonds] = Field(None, description="Optional Bonds object, describing covalent bonds")
     properties: Optional[Properties] = Field(None, description="Optional free-form Properties, including total charge and total spin multiplicity.")
