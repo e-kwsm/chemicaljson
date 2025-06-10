@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from typing import List, Optional
 
 from pydantic.v1 import BaseModel, Field
@@ -273,5 +274,5 @@ class CJSONModel(BaseModel):
 
 if __name__ == "__main__":
     with open("cjson.schema", "w") as handle:
-        handle.write(CJSONModel.schema_json(indent=2))
+        handle.write(json.dumps(CJSONModel.model_json_schema(), indent=2))
         handle.write("\n")
