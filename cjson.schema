@@ -218,7 +218,8 @@
           "title": "Index",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0
           }
         }
       },
@@ -617,7 +618,8 @@
           "description": "List of number of primitives per shell.",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "exclusiveMinimum": 0
           }
         },
         "shellToAtomMap": {
@@ -625,7 +627,8 @@
           "description": "List of atom indices for the basis functions.",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0
           }
         },
         "shellTypes": {

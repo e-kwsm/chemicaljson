@@ -41,7 +41,7 @@ class Connections(BaseModel):
     Length must be the number of bonds * 2
     """
 
-    index: List[int]
+    index: List[NonNegativeInt]
 
 
 class Bonds(BaseModel):
@@ -61,8 +61,8 @@ class BasisSet(BaseModel):
 
     coefficients: List[float] = Field(..., description="List of coefficients for the basis functions.")
     exponents: List[float] = Field(..., description="List of exponents for the basis functions.")
-    primitivesPerShell: List[int] = Field(..., description="List of number of primitives per shell.")
-    shellToAtomMap: List[int] = Field(..., description="List of atom indices for the basis functions.")
+    primitivesPerShell: List[PositiveInt] = Field(..., description="List of number of primitives per shell.")
+    shellToAtomMap: List[NonNegativeInt] = Field(..., description="List of atom indices for the basis functions.")
     shellTypes: List[NonNegativeInt] = Field(..., description="List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).")
 
 
