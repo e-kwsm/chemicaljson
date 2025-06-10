@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Annotated, List, Optional
+from typing import Annotated, List, Literal, Optional, Union
 
 from pydantic.v1 import BaseModel, Field, NonNegativeInt, PositiveFloat, PositiveInt
 
@@ -147,7 +147,7 @@ class InputParameters(BaseModel):
     grid: Optional[str] = None
     memory: Optional[str] = None
     processors: Optional[str] = None
-    task: Optional[str] = None
+    task: Optional[Union[str, Literal["Energy", "Optimize", "Frequencies", "Transition State"]]] = None
     theory: Optional[str] = None
 
 
