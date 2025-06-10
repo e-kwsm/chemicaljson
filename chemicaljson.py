@@ -11,7 +11,9 @@ class Elements(BaseModel):
     Length must match the number of atoms.
     """
 
-    number: List[int] = Field(..., description="Required list of atomic numbers for the atoms in this file.")
+    number: List[int] = Field(
+        ..., description="Required list of atomic numbers for the atoms in this file."
+    )
 
 
 class Coords(BaseModel):
@@ -20,9 +22,24 @@ class Coords(BaseModel):
     Length must match the number of atoms*3 (x, y, z).
     """
 
-    field3d: List[float] = Field(..., alias="3d", description="List of 3d Cartesian coordinates (in Angstrom) for the atoms [ x, y, z, x, y, z, ... ]")
-    field3dFractional: Optional[List[float]] = Field(None, alias="3dFractional", description="Optional list of 3d fractional coordinates for the atoms [ x, y, z, x, y, z, ... ]")
-    field3dSets: Optional[List[List[float]]] = Field(None, alias="3dSets", description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms [ [x, y, z], [x, y, z], ... ]")
+    field3d: List[float] = Field(
+        ...,
+        alias="3d",
+        description="List of 3d Cartesian coordinates (in Angstrom) for the atoms "
+        "[ x, y, z, x, y, z, ... ]",
+    )
+    field3dFractional: Optional[List[float]] = Field(
+        None,
+        alias="3dFractional",
+        description="Optional list of 3d fractional coordinates for the atoms "
+        "[ x, y, z, x, y, z, ... ]",
+    )
+    field3dSets: Optional[List[List[float]]] = Field(
+        None,
+        alias="3dSets",
+        description="Optional list of lists of 3d Cartesian coordinates (in Angstrom) for the atoms "
+        "[ [x, y, z], [x, y, z], ... ]",
+    )
 
 
 class Atoms(BaseModel):
@@ -30,9 +47,19 @@ class Atoms(BaseModel):
 
     elements: Elements = Field(..., description="List of atomic numbers for the atoms.")
     coords: Coords = Field(..., description="List of coordinates.")
-    formalCharges: Optional[List[int]] = Field(None, description="Optional list of formal charges for the atoms.")
-    labels: Optional[List[str]] = Field(None, description="Optional list of custom labels for atoms (e.g., 'R' / 'S' or '0.12', etc.)")
-    layer: Optional[List[int]] = Field(None, description="Optional list of layer numbers for the atoms (generally just 1 for most molecules).")
+    formalCharges: Optional[List[int]] = Field(
+        None, description="Optional list of formal charges for the atoms."
+    )
+    labels: Optional[List[str]] = Field(
+        None,
+        description="Optional list of custom labels for atoms "
+        "(e.g., 'R' / 'S' or '0.12', etc.)",
+    )
+    layer: Optional[List[int]] = Field(
+        None,
+        description="Optional list of layer numbers for the atoms "
+        "(generally just 1 for most molecules).",
+    )
 
 
 class Connections(BaseModel):
@@ -46,7 +73,8 @@ class Connections(BaseModel):
 
 class Bonds(BaseModel):
     """
-    Optional bonds between atoms, including connections and bond orders for the atoms in the molecule. (Optional)
+    Optional bonds between atoms, including connections and bond orders for the atoms
+    in the molecule. (Optional)
     """
 
     connections: Connections
@@ -59,40 +87,80 @@ class BasisSet(BaseModel):
     At the moment, implied to be Gaussian basis sets.
     """
 
-    coefficients: List[float] = Field(..., description="List of coefficients for the basis functions.")
-    exponents: List[float] = Field(..., description="List of exponents for the basis functions.")
-    primitivesPerShell: List[int] = Field(..., description="List of number of primitives per shell.")
-    shellToAtomMap: List[int] = Field(..., description="List of atom indices for the basis functions.")
-    shellTypes: List[int] = Field(..., description="List of shell types for the basis functions (l-value, so s=0, p=1, d=2, etc.).")
+    coefficients: List[float] = Field(
+        ..., description="List of coefficients for the basis functions."
+    )
+    exponents: List[float] = Field(
+        ..., description="List of exponents for the basis functions."
+    )
+    primitivesPerShell: List[int] = Field(
+        ..., description="List of number of primitives per shell."
+    )
+    shellToAtomMap: List[int] = Field(
+        ..., description="List of atom indices for the basis functions."
+    )
+    shellTypes: List[int] = Field(
+        ...,
+        description="List of shell types for the basis functions "
+        "(l-value, so s=0, p=1, d=2, etc.).",
+    )
 
 
 class Orbitals(BaseModel):
     """Information about molecular orbital energies and coefficients. (Optional)
-    
-    To be useful, this should include basis set information, electronCount, energies, 
+
+    To be useful, this should include basis set information, electronCount, energies,
     """
 
     electronCount: int = Field(..., description="Number of electrons in the species")
-    energies: Optional[List[float]] = Field(None, description="List of energies for the molecular orbitals (in eV)")
-    moCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for restricted molecular orbitals, i.e., alpha=beta (requires BasisSet to be present).")
-    alphaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for alpha open-shell orbitals, (requires BasisSet to be present).")
-    betaCoefficients: Optional[List[float]] = Field(None, description="List of coefficients (flattened) for beta open-shell orbitals, (requires BasisSet to be present).")
-    occupations: Optional[List[int]] = Field(None, description="List of occupations for the molecular orbitals")
-    symmetries: Optional[List[List[str]]] = Field(None, description="Symmetry of the orbital (e.g., a1, eg, t1g, etc.)")
+    energies: Optional[List[float]] = Field(
+        None, description="List of energies for the molecular orbitals (in eV)"
+    )
+    moCoefficients: Optional[List[float]] = Field(
+        None,
+        description="List of coefficients (flattened) for restricted molecular "
+        "orbitals, i.e., alpha=beta (requires BasisSet to be present).",
+    )
+    alphaCoefficients: Optional[List[float]] = Field(
+        None,
+        description="List of coefficients (flattened) for alpha open-shell orbitals, "
+        "(requires BasisSet to be present).",
+    )
+    betaCoefficients: Optional[List[float]] = Field(
+        None,
+        description="List of coefficients (flattened) for beta open-shell orbitals, "
+        "(requires BasisSet to be present).",
+    )
+    occupations: Optional[List[int]] = Field(
+        None, description="List of occupations for the molecular orbitals"
+    )
+    symmetries: Optional[List[List[str]]] = Field(
+        None, description="Symmetry of the orbital (e.g., a1, eg, t1g, etc.)"
+    )
 
 
 class Electronic(BaseModel):
     """Electronic spectra (optional)"""
 
-    energies: List[float] = Field(..., description="List of excitation energies for the electronic spectra (in eV)")
-    intensities: List[float] = Field(..., description="List of intensities for the electronic spectra")
-    rotation: Optional[List[float]] = Field(None, description="Optional list of rotation angles for the CD spectra (in degrees)")
+    energies: List[float] = Field(
+        ...,
+        description="List of excitation energies for the electronic spectra (in eV)",
+    )
+    intensities: List[float] = Field(
+        ..., description="List of intensities for the electronic spectra"
+    )
+    rotation: Optional[List[float]] = Field(
+        None,
+        description="Optional list of rotation angles for the CD spectra (in degrees)",
+    )
 
 
 class Nmr(BaseModel):
     """NMR spectra (optional)"""
 
-    shifts: List[float] = Field(..., description="List of absolute chemical shifts for the NMR spectra (in ppm)")
+    shifts: List[float] = Field(
+        ..., description="List of absolute chemical shifts for the NMR spectra (in ppm)"
+    )
 
 
 class Spectra(BaseModel):
@@ -101,7 +169,9 @@ class Spectra(BaseModel):
     Objects for non-vibrational spectra, including electronic, NMR, and other spectra.
     """
 
-    electronic: Optional[Electronic] = Field(None, description="Optional electronic spectra")
+    electronic: Optional[Electronic] = Field(
+        None, description="Optional electronic spectra"
+    )
     nmr: Optional[Nmr] = Field(None, description="Optional NMR spectra")
 
 
@@ -114,9 +184,17 @@ class Properties(BaseModel):
     molecularMass: Optional[float] = None
     meltingPoint: Optional[float] = None
     boilingPoint: Optional[float] = None
-    totalCharge: Optional[int] = Field(0, description="Total charge of the system. If omitted, assume 0 (charge neutral)")
-    totalSpinMultiplicity: Optional[int] = Field(1, description="Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)")
-    totalEnergy: Optional[float] = Field(None, description="Optional total energy of the system in eV")
+    totalCharge: Optional[int] = Field(
+        0,
+        description="Total charge of the system. If omitted, assume 0 (charge neutral)",
+    )
+    totalSpinMultiplicity: Optional[int] = Field(
+        1,
+        description="Total spin multiplicity of the system (2S+1, e.g., 1, 2, 3, etc.). If omitted, assume to be 1 (singlet)",
+    )
+    totalEnergy: Optional[float] = Field(
+        None, description="Optional total energy of the system in eV"
+    )
 
 
 class Metadata(BaseModel):
@@ -125,7 +203,9 @@ class Metadata(BaseModel):
     Attributes:
         runDate: date calculation was done
     """
+
     runDate: Optional[str] = None
+
 
 class InputParameters(BaseModel):
     """Input parameters for the calculation. (Optional)
@@ -178,7 +258,11 @@ class UnitCell(BaseModel):
     beta: float = Field(..., description="Unit cell beta angle (in degrees).")
     gamma: float = Field(..., description="Unit cell gamma angle (in degrees).")
     cellVectors: Optional[List[float]] = Field(
-        min_items=9, max_items=9, default_factory=lambda: [0.0 for _ in range(9)], description="Optional list of cell vectors (in Angstrom): [ x1, y1, z1, x2, y2, z2, ... ]"
+        min_items=9,
+        max_items=9,
+        default_factory=lambda: [0.0 for _ in range(9)],
+        description="Optional list of cell vectors (in Angstrom): "
+        "[ x1, y1, z1, x2, y2, z2, ... ]",
     )
 
 
@@ -191,9 +275,16 @@ class Vibrations(BaseModel):
         symmetries: Optional list of symmetries for the vibrations (e.g., 'a1g', 'eg' ...)
     """
 
-    frequencies: List[float] = Field(... , description="List of frequencies (in cm-1) for the vibrations.")
-    intensities: List[float] = Field(... , description="List of IR intensities for the vibrations.")
-    eigenVectors: List[List[float]] = Field(..., description="List of eigenvectors (displacements in Angstroms) for the vibrations.")
+    frequencies: List[float] = Field(
+        ..., description="List of frequencies (in cm-1) for the vibrations."
+    )
+    intensities: List[float] = Field(
+        ..., description="List of IR intensities for the vibrations."
+    )
+    eigenVectors: List[List[float]] = Field(
+        ...,
+        description="List of eigenvectors (displacements in Angstroms) for the vibrations.",
+    )
     ramanIntensities: Optional[List[float]]
     symmetries: Optional[List[str]]
     modes: Optional[List[int]]
@@ -217,7 +308,10 @@ class Enable(BaseModel):
 class Settings(BaseModel):
     """Settings for the render types. (Optional)"""
 
-    ballAndStick: Optional[List[str]] = Field(alias="Ball and Stick", description="Settings for the Ball and Stick rendering type")
+    ballAndStick: Optional[List[str]] = Field(
+        alias="Ball and Stick",
+        description="Settings for the Ball and Stick rendering type",
+    )
     cartoons: Optional[List[str]]
     wireframe: Optional[List[str]]
 
@@ -253,16 +347,43 @@ class CJSONModel(BaseModel):
         orbitals: Orbitals object. Optional. Requires BasisSet to be present.
     """
 
-    chemicalJson: int = Field(1, description="Version number of the Chemical JSON format. Currently 1. Only changed for backwards-incompatible changes to the schema.")
-    atoms: Atoms = Field(..., description="Atoms object, describing the atoms in this system.")
-    name: Optional[str] = Field(None, description="Optional name / title for the molecule")
-    inchi: Optional[str] = Field(None, description="Optional InChI descriptor for the molecule")
-    formula: Optional[str] = Field(None, description="Optional chemical formula in Hill order")
-    bonds: Optional[Bonds] = Field(None, description="Optional Bonds object, describing covalent bonds")
-    properties: Optional[Properties] = Field(None, description="Optional free-form Properties, including total charge and total spin multiplicity.")
-    inputParameters: Optional[InputParameters] = Field(None, description="Optional InputParameters object, including calculation metadata such as basis set, job type, etc.")
-    metadata: Optional[Metadata] = Field(None, description="Optional metadata object, including calculation details which do not directly impact results")
-    partialCharges: Optional[PartialCharges] = Field(None, description="Optional PartialCharges object. Includes atomic partial charges and population analysis.")
+    chemicalJson: int = Field(
+        1,
+        description="Version number of the Chemical JSON format. Currently 1. "
+        "Only changed for backwards-incompatible changes to the schema.",
+    )
+    atoms: Atoms = Field(
+        ..., description="Atoms object, describing the atoms in this system."
+    )
+    name: Optional[str] = Field(
+        None, description="Optional name / title for the molecule"
+    )
+    inchi: Optional[str] = Field(
+        None, description="Optional InChI descriptor for the molecule"
+    )
+    formula: Optional[str] = Field(
+        None, description="Optional chemical formula in Hill order"
+    )
+    bonds: Optional[Bonds] = Field(
+        None, description="Optional Bonds object, describing covalent bonds"
+    )
+    properties: Optional[Properties] = Field(
+        None,
+        description="Optional free-form Properties, including total charge and total spin multiplicity.",
+    )
+    inputParameters: Optional[InputParameters] = Field(
+        None,
+        description="Optional InputParameters object, including calculation metadata "
+        "such as basis set, job type, etc.",
+    )
+    metadata: Optional[Metadata] = Field(
+        None,
+        description="Optional metadata object, including calculation details which do not directly impact results",
+    )
+    partialCharges: Optional[PartialCharges] = Field(
+        None,
+        description="Optional PartialCharges object. Includes atomic partial charges and population analysis.",
+    )
     vibrations: Optional[Vibrations] = None
     unitCell: Optional[UnitCell] = None
     layer: Optional[Layer] = None
