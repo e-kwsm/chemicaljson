@@ -207,14 +207,12 @@ class Layer(BaseModel):
     Attributes:
         enable: Enable flags for different render types for each layer.
         settings: Settings for the render types.
-        locked: List of locked layers (e.g., atoms in this layer should not change)
-        visible: List of visible layers (e.g., atoms in this layer should be visible / invisible)
     """
 
     enable: Enable
-    locked: List[bool]
+    locked: List[bool] = Field(..., description="List of locked layers (e.g., atoms in this layer should not change)")
     settings: Settings
-    visible: List[bool]
+    visible: List[bool] = Field(..., description="List of visible layers (e.g., atoms in this layer should be visible / invisible)")
 
 
 class CJSONModel(BaseModel):

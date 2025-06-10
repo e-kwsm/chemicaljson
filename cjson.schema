@@ -567,7 +567,7 @@
     },
     "Layer": {
       "title": "Layer",
-      "description": "Layer settings for the molecule. (Optional)\n\nAttributes:\n    enable: Enable flags for different render types for each layer.\n    settings: Settings for the render types.\n    locked: List of locked layers (e.g., atoms in this layer should not change)\n    visible: List of visible layers (e.g., atoms in this layer should be visible / invisible)",
+      "description": "Layer settings for the molecule. (Optional)\n\nAttributes:\n    enable: Enable flags for different render types for each layer.\n    settings: Settings for the render types.",
       "type": "object",
       "properties": {
         "enable": {
@@ -575,6 +575,7 @@
         },
         "locked": {
           "title": "Locked",
+          "description": "List of locked layers (e.g., atoms in this layer should not change)",
           "type": "array",
           "items": {
             "type": "boolean"
@@ -585,6 +586,7 @@
         },
         "visible": {
           "title": "Visible",
+          "description": "List of visible layers (e.g., atoms in this layer should be visible / invisible)",
           "type": "array",
           "items": {
             "type": "boolean"
