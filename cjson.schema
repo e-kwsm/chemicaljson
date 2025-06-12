@@ -108,7 +108,7 @@
       "properties": {
         "number": {
           "title": "Number",
-          "description": "Required list of atomic numbers for the atoms in this file.",
+          "description": "Required list of atomic numbers for the atoms in this file. Zero represents a dummy",
           "type": "array",
           "items": {
             "type": "integer"
