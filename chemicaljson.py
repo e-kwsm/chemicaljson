@@ -11,7 +11,7 @@ class Elements(BaseModel):
     Length must match the number of atoms.
     """
 
-    number: List[int] = Field(..., description="Required list of atomic numbers for the atoms in this file. Zero represents a dummy")
+    number: List[NonNegativeInt] = Field(..., description="Required list of atomic numbers for the atoms in this file. Zero represents a dummy")
 
 
 class Coords(BaseModel):
