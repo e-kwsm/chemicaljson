@@ -219,6 +219,7 @@
       "properties": {
         "index": {
           "title": "Index",
+          "description": "Indices start from zero.",
           "type": "array",
           "items": {
             "type": "integer",
