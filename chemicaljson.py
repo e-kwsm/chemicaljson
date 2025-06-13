@@ -41,7 +41,7 @@ class Connections(BaseModel):
     Length must be the number of bonds * 2
     """
 
-    index: List[int]
+    index: List[int] = Field(..., description="Zero-based indices.")
 
 
 class Bonds(BaseModel):
