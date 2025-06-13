@@ -216,6 +216,7 @@
       "properties": {
         "index": {
           "title": "Index",
+          "description": "Zero-based indices.",
           "type": "array",
           "items": {
             "type": "integer"
